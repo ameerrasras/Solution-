@@ -1,0 +1,15 @@
+/Users/ameerrasras/Projects/Application/Business/obj/Debug/net7.0/Business.csproj.AssemblyReference.cache
+/Users/ameerrasras/Projects/Application/Business/obj/Debug/net7.0/Business.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ameerrasras/Projects/Application/Business/obj/Debug/net7.0/Business.AssemblyInfoInputs.cache
+/Users/ameerrasras/Projects/Application/Business/obj/Debug/net7.0/Business.AssemblyInfo.cs
+/Users/ameerrasras/Projects/Application/Business/obj/Debug/net7.0/Business.csproj.CoreCompileInputs.cache
+/Users/ameerrasras/Projects/Application/Business/bin/Debug/net7.0/Business.deps.json
+/Users/ameerrasras/Projects/Application/Business/bin/Debug/net7.0/Business.dll
+/Users/ameerrasras/Projects/Application/Business/bin/Debug/net7.0/Business.pdb
+/Users/ameerrasras/Projects/Application/Business/bin/Debug/net7.0/Infrastructure.dll
+/Users/ameerrasras/Projects/Application/Business/bin/Debug/net7.0/Infrastructure.pdb
+/Users/ameerrasras/Projects/Application/Business/obj/Debug/net7.0/Business.csproj.CopyComplete
+/Users/ameerrasras/Projects/Application/Business/obj/Debug/net7.0/Business.dll
+/Users/ameerrasras/Projects/Application/Business/obj/Debug/net7.0/refint/Business.dll
+/Users/ameerrasras/Projects/Application/Business/obj/Debug/net7.0/Business.pdb
+/Users/ameerrasras/Projects/Application/Business/obj/Debug/net7.0/ref/Business.dll
