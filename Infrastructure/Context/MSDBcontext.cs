@@ -11,7 +11,6 @@ namespace Infrastructure.Context;
             : base(options)
         {
         }
-
         public DbSet<Department> Departments { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
@@ -19,9 +18,9 @@ namespace Infrastructure.Context;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer("Server=localhost;Database=ASALProject;User Id=sa;Password=reallyStrongPwd123;TrustServerCertificate=true;");
+                optionsBuilder.UseSqlServer
+                ("Server=localhost;Database=ASALProject;User Id=sa;Password=reallyStrongPwd123;TrustServerCertificate=true;");
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
@@ -30,4 +29,3 @@ namespace Infrastructure.Context;
                 .HasForeignKey(u => u.RoleId);
         }
     }
-

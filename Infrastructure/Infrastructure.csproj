@@ -7,16 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Entities\" />
     <None Remove="Context\" />
     <None Remove="Repositories\" />
     <None Remove="Repositories Interfaces\" />
+    <None Remove="Entities\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entities\" />
     <Folder Include="Context\" />
     <Folder Include="Repositories\" />
     <Folder Include="Repositories Interfaces\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
@@ -27,5 +27,6 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.10" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
+    <PackageReference Include="SmartFormat.NET" Version="3.2.2" />
   </ItemGroup>
 </Project>

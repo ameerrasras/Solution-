@@ -1,11 +1,13 @@
 ﻿using Infrastructure.Context;
 using Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-
-public class DepartmentRepository
+public class DepartmentRepository : IDepartmentRepository
 {
-    #nullable disable
+#nullable disable
     private readonly MSDBcontext _context;
 
     public DepartmentRepository(MSDBcontext context)
@@ -13,38 +15,39 @@ public class DepartmentRepository
         _context = context;
     }
 
-    public async Task<List<Department>> GetAllAsync()
+    public async Task<List<Department>> GetAllDepartments()
     {
         return await _context.Departments
                              .Where(d => !d.IsDeleted)
                              .ToListAsync();
     }
 
-    public async Task<Department> GetByIdAsync(int id)
+    public async Task<Department> GetByIdDepartments(int id)
     {
         return await _context.Departments.FindAsync(id);
     }
 
-    public async Task<int> AddAsync(Department department)
+    public async Task<Department> AddDepartments(Department department)
     {
         _context.Departments.Add(department);
         await _context.SaveChangesAsync();
-        return department.Id;
+        return department;
     }
 
-    public async Task<bool> UpdateAsync(Department department)
+    public async Task<Department> UpdateDepartments(Department department)
     {
         _context.Entry(department).State = EntityState.Modified;
-        return (await _context.SaveChangesAsync()) > 0;
+        await _context.SaveChangesAsync();
+        return department;
     }
 
-    public async Task<bool> DeleteAsync(int id)
+    public async Task<bool> DeleteDepartments(Department department)
     {
-        var department = await _context.Departments.FindAsync(id);
-        if (department == null)
+        var existingDepartment = await _context.Departments.FindAsync(department.Id);
+        if (existingDepartment == null)
             return false;
-
-        department.IsDeleted = true;
-        return (await _context.SaveChangesAsync()) > 0;
+        existingDepartment.IsDeleted = true;
+        await _context.SaveChangesAsync();
+        return true;
     }
 }

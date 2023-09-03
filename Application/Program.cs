@@ -5,10 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Business.Repositories;
-
 var builder = WebApplication.CreateBuilder(args);
-
-var connectionString = "Server=localhost;Database=ASALProject;User Id=sa;Password=reallyStrongPwd123;TrustServerCertificate=true;";
+var connectionString =
+"Server=localhost;Database=ASALProject;User Id=sa;Password=reallyStrongPwd123;TrustServerCertificate=true;";
 
 builder.Services.AddDbContextPool<MSDBcontext>(options =>
     options.UseSqlServer(connectionString));
@@ -28,6 +27,8 @@ builder.Services.AddScoped<IUserManager, UserManager>();
 builder.Services.AddScoped<IUserRoleManager, UserRoleManager>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserRoleRepository, UserRoleRepository>();
+builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+
 
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();

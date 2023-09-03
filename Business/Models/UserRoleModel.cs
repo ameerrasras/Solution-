@@ -1,12 +1,7 @@
-﻿using System;
-namespace Business.Models
-{
-    public class UserRoleModel 
-    {
+﻿namespace Business.Models;
 #nullable disable
-        public string Name { get; set; }
-        public string Description { get; set; }
-    }
-
+public class UserRoleModel
+{
+    public string Name { get; set; }
+    public string Description { get; set; }
 }
-

@@ -21,7 +21,7 @@ public class UserRepository : IUserRepository
             .ToListAsync();
     }
 
-    public async Task<User> GetUserByUserId(string userId)
+    public async Task<User> GetUserByUserId(int userId)
     {
         return await _context.Users
             .Where(u => u.UserId == userId && !u.IsDeleted)

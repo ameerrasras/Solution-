@@ -1,9 +1,7 @@
 ﻿using Infrastructure.Entities;
 using Business.Models;
 using Business.Views;
-
 namespace Business.Mapping;
-
 #nullable disable
 public static class UserRoleMapping 
 {

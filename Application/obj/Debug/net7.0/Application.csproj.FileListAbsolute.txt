@@ -122,3 +122,11 @@
 /Users/ameerrasras/Projects/Application/Application/bin/Debug/net7.0/Swashbuckle.AspNetCore.Swagger.dll
 /Users/ameerrasras/Projects/Application/Application/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/ameerrasras/Projects/Application/Application/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/ameerrasras/Projects/Application/Application/bin/Debug/net7.0/Newtonsoft.Json.dll
+/Users/ameerrasras/Projects/Application/Application/bin/Debug/net7.0/SmartFormat.ZString.dll
+/Users/ameerrasras/Projects/Application/Application/bin/Debug/net7.0/SmartFormat.dll
+/Users/ameerrasras/Projects/Application/Application/bin/Debug/net7.0/SmartFormat.Extensions.Newtonsoft.Json.dll
+/Users/ameerrasras/Projects/Application/Application/bin/Debug/net7.0/SmartFormat.Extensions.System.Text.Json.dll
+/Users/ameerrasras/Projects/Application/Application/bin/Debug/net7.0/SmartFormat.Extensions.Time.dll
+/Users/ameerrasras/Projects/Application/Application/bin/Debug/net7.0/SmartFormat.Extensions.Xml.dll
+/Users/ameerrasras/Projects/Application/Application/bin/Debug/net7.0/SmartFormat.Net.dll

@@ -1,7 +1,5 @@
 ﻿using Infrastructure.Entities;
-
 namespace Business.Views;
-
 #nullable disable
 public class UserRoleView : TrackingData
 {

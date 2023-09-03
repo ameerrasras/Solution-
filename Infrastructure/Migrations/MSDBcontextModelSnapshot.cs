@@ -54,19 +54,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedBy = "System",
-                            CreatedOn = new DateTime(2023, 9, 1, 14, 16, 54, 472, DateTimeKind.Local).AddTicks(2430),
-                            Description = "Human Resources",
-                            IsDeleted = false,
-                            ModifiedBy = "System",
-                            ModifiedOn = new DateTime(2023, 9, 1, 14, 16, 54, 472, DateTimeKind.Local).AddTicks(2480),
-                            Name = "HR"
-                        });
                 });
 
             modelBuilder.Entity("Infrastructure.Entities.User", b =>
@@ -101,8 +88,8 @@ namespace Infrastructure.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

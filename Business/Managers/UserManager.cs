@@ -19,7 +19,7 @@ public class UserManager : IUserManager
         return users.Select(UserMapping.MapToView).ToList();
     }
 
-    public async Task<UserView> GetUserByUserId(string userId)
+    public async Task<UserView> GetUserByUserId(int userId)
     {
         var user = await _userRepository.GetUserByUserId(userId);
         return UserMapping.MapToView(user);

@@ -56,6 +56,10 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "SmartFormat.NET": {
+              "target": "Package",
+              "version": "[3.2.2, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.0.0, )"

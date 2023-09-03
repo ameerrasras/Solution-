@@ -1,19 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Business.Interfaces;
-
 namespace WebApi.Controllers;
-
 [ApiController]
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
     private readonly IUserManager _userManager;
-
+    
     public UserController(IUserManager userManager)
     {
         _userManager = userManager;
     }
-
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
@@ -21,26 +18,17 @@ public class UserController : ControllerBase
         return Ok(users);
     }
 
-    [HttpGet("Role/{Rid}")]
-    public async Task<IActionResult> GetUsersByRoleId(int Rid)
+    [HttpGet("Role/{RoleId}")]
+    public async Task<IActionResult> GetUsersByRoleId(int RoleId)
     {
-        var usersWithRole = await _userManager.GetUsersByRoleId(Rid);
-        if (usersWithRole == null || !usersWithRole.Any())
-        {
-            return NotFound();
-        }
-        return Ok(usersWithRole);
+        var usersWithRole = await _userManager.GetUsersByRoleId(RoleId);
+        return (usersWithRole == null || !usersWithRole.Any())? NotFound() : Ok(usersWithRole);
     }
 
     [HttpGet("User/{id}")]
-    public async Task<IActionResult> GetById(string id)
+    public async Task<IActionResult> GetById(int id)
     {
         var user = await _userManager.GetUserByUserId(id);
-        if (user == null)
-        {
-            return NotFound();
-        }
-        return Ok(user);
+        return (user == null) ? NotFound() : Ok(user);
     }
-
 }

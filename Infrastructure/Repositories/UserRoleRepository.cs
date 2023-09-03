@@ -2,9 +2,7 @@
 using Infrastructure.Entities;
 using Infrastructure.Context;
 #nullable disable
-
 namespace Business.Repositories;
-
 public class UserRoleRepository : IUserRoleRepository
 {
     private readonly MSDBcontext _context;

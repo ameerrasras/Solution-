@@ -30,6 +30,10 @@ public class UserRoleManager : IUserRoleManager
     public async Task<UserRoleView> CreateUserRole(UserRoleModel userRoleModel)
     {
         var userRoleEntity = UserRoleMapping.MapToEntity(userRoleModel);
+        userRoleEntity.CreatedBy = "Ameer";
+        userRoleEntity.CreatedOn = DateTime.Now;
+        userRoleEntity.IsDeleted = false;
+
         var createdUserRole = await _repository.Create(userRoleEntity);
         return UserRoleMapping.MapToView(createdUserRole);
     }
