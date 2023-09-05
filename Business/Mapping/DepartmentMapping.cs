@@ -1,16 +1,15 @@
 ﻿using Infrastructure.Entities;
 using Business.Models;
 using Business.Views;
+
 namespace Business.Mapping;
+
 #nullable disable
 public static class DepartmentMapping
 {
     public static DepartmentsView MapToView(Department entity)
     {
-        if (entity == null)
-            return null;
-
-        return new DepartmentsView
+        return (entity == null) ? null : new DepartmentsView
         {
             Id = entity.Id,
             Name = entity.Name,
@@ -24,10 +23,7 @@ public static class DepartmentMapping
 
     public static Department MapToEntity(this DepartmentModel model)
     {
-        if (model == null)
-            return null;
-
-        return new Department
+        return (model == null) ? null : new Department
         {
             Name = model.Name,
             Description = model.Description,

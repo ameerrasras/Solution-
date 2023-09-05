@@ -9,10 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Busine
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{B5F8647F-9643-4118-A30E-D186384027CE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7AE4F6CF-69C3-46EB-BC78-C38051820633}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4F8BC26D-4E93-4CCB-ABF0-76BFBA49F8E7}"
 	ProjectSection(SolutionItems) = preProject
-		EmptyTextFile.txt = EmptyTextFile.txt
-		HomeController.cs = HomeController.cs
+		Template.cshtml = Template.cshtml
 	EndProjectSection
 EndProject
 Global

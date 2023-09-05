@@ -6,10 +6,10 @@ public class User : TrackingData
 {
     [Key]
     public int Id { get; set; } 
-    public int UserId { get; set; }
     public string Email { get; set; }
     public string Password { get; set; }
+
+    public UserRole UserRole { get; set; }
     [ForeignKey("RoleId")]
     public int RoleId { get; set; }
-    public UserRole UserRole { get; set; } 
 }

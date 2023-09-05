@@ -2,47 +2,57 @@
 using Business.Views;
 using Business.Models;
 using Microsoft.AspNetCore.Mvc;
+
 namespace Application.Controllers;
+
 [Route("api/[controller]")]
 [ApiController]
 public class DepartmentsController : ControllerBase
 {
-    private readonly IDepartmentManager _departmentManager;
+    private readonly IDepartmentManager _manager;
 
     public DepartmentsController(IDepartmentManager departmentManager) =>
-        _departmentManager = departmentManager ?? throw new ArgumentNullException(nameof(departmentManager));
+        _manager = departmentManager ?? throw new ArgumentNullException(nameof(departmentManager));
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<DepartmentsView>>> GetDepartments()
     {
-        return Ok(await _departmentManager.GetAllDepartments());
+        return Ok(await _manager.GetAllDepartments());
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<DepartmentsView>> GetDepartment(int id)
     {
-        var department = await _departmentManager.GetDepartmentById(id);
+        var department = await _manager.GetDepartmentById(id);
         return (department == null) ? NotFound() : Ok(department);
     }
 
     [HttpPost]
-    public async Task<ActionResult<DepartmentsView>> CreateDepartment(DepartmentModel departmentModel)
+    public async Task<ActionResult<DepartmentsView>> CreateDepartment(DepartmentModel model)
     {
-        var departmentView = await _departmentManager.CreateDepartment(departmentModel);
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+        
+        var departmentView = await _manager.CreateDepartment(model);
         return Ok(departmentView);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateDepartmentApi(int id, [FromBody] DepartmentModel departmentModel)
+    public async Task<IActionResult> UpdateDepartment(int id, [FromBody] DepartmentModel model)
     {
-        var updatedDepartment = await _departmentManager.UpdateDepartment(id, departmentModel);
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        var updatedDepartment = await _manager.UpdateDepartment(id, model);
+
         return (updatedDepartment == null) ? NotFound() : Ok(updatedDepartment);
     }
 
     [HttpDelete("{id}")]
-    public async Task<Boolean> DeleteDepartment(int id)
+    public async Task<IActionResult> DeleteDepartmentApi(int id)
     {
-        var isDeleted = await _departmentManager.DeleteDepartment(id);
-        return isDeleted;
+        var isDeleted = await _manager.DeleteDepartment(id);
+        return isDeleted ? Ok(new { message = "Deleted successfully" }) : NotFound(new { message = "Department not found" });
     }
+
 }

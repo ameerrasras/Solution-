@@ -1,52 +1,74 @@
 ﻿using Business.Models;
 using Business.Views;
-using Business.Repositories;
+using Infrastructure.Repository;
 using Business.Interfaces;
 using Business.Mapping;
+using Infrastructure.Entities;
+#nullable disable
 
 namespace Business.Managers;
 
 public class UserRoleManager : IUserRoleManager
 {
-    private readonly IUserRoleRepository _repository;
+    private readonly IRepository<UserRole> _repository;
 
-    public UserRoleManager(IUserRoleRepository repository)
+    public UserRoleManager(IRepository<UserRole> repository)
     {
         _repository = repository;
     }
 
     public async Task<List<UserRoleView>> GetAllUserRoles()
     {
-        var userRoles = await _repository.GetAll();
-        return userRoles.Select(ur => UserRoleMapping.MapToView(ur)).ToList();
+        var userRoles = await _repository.GetAllAsync();
+        return userRoles.Select(UserRoleMapping.MapToView).ToList();
     }
 
-    public async Task<UserRoleView> GetUserRoleById(int userRoleId)
+    public async Task<UserRoleView> GetUserRoleById(int id)
     {
-        var userRole = await _repository.GetById(userRoleId);
-        return UserRoleMapping.MapToView(userRole);
+        var userRole = await _repository.GetByIdAsync(id);
+        return (userRole == null || userRole.IsDeleted) ? null : UserRoleMapping.MapToView(userRole);
     }
 
-    public async Task<UserRoleView> CreateUserRole(UserRoleModel userRoleModel)
+    public async Task<UserRoleView> CreateUserRole(UserRoleModel model)
     {
-        var userRoleEntity = UserRoleMapping.MapToEntity(userRoleModel);
-        userRoleEntity.CreatedBy = "Ameer";
-        userRoleEntity.CreatedOn = DateTime.Now;
-        userRoleEntity.IsDeleted = false;
+        var entity = UserRoleMapping.MapToEntity(model);
+        entity.CreatedBy = "Ameer";
+        entity.CreatedOn = DateTime.Now;
+        entity.IsDeleted = false;
 
-        var createdUserRole = await _repository.Create(userRoleEntity);
-        return UserRoleMapping.MapToView(createdUserRole);
+        var createdEntity = await _repository.AddAsync(entity);
+        return UserRoleMapping.MapToView(createdEntity);
     }
 
-    public async Task<UserRoleView> UpdateUserRole(int userRoleId, UserRoleModel userRoleModel)
+    public async Task<UserRoleView> UpdateUserRole(int id, UserRoleModel model)
     {
-        var userRoleEntity = UserRoleMapping.MapToEntity(userRoleModel);
-        var updatedUserRole = await _repository.Update(userRoleId, userRoleEntity);
-        return UserRoleMapping.MapToView(updatedUserRole);
+        var existingUserRole = await _repository.GetByIdAsync(id);
+
+        if (existingUserRole == null || existingUserRole.IsDeleted)
+            return null;
+
+        existingUserRole.Name = model.Name;
+        existingUserRole.Description = model.Description;
+        existingUserRole.ModifiedBy = "Ameer";
+        existingUserRole.ModifiedOn = DateTime.Now;
+
+        await _repository.UpdateAsync(existingUserRole);
+
+        return UserRoleMapping.MapToView(existingUserRole);
     }
 
-    public async Task<bool> DeleteUserRole(int userRoleId)
+    public async Task<bool> DeleteUserRole(int id)
     {
-        return await _repository.Delete(userRoleId);
+        var existingUserRole = await _repository.GetByIdAsync(id);
+
+        if (existingUserRole == null)
+            return false;
+
+        existingUserRole.IsDeleted = true;
+
+        await _repository.UpdateAsync(existingUserRole);
+
+        return existingUserRole.IsDeleted;
     }
+
 }

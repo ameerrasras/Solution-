@@ -4,7 +4,9 @@ using Business.Managers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
-using Business.Repositories;
+using Infrastructure.Repository;
+using Infrastructure.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 var connectionString =
 "Server=localhost;Database=ASALProject;User Id=sa;Password=reallyStrongPwd123;TrustServerCertificate=true;";
@@ -25,11 +27,10 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddScoped<IDepartmentManager, DepartmentManager>();
 builder.Services.AddScoped<IUserManager, UserManager>();
 builder.Services.AddScoped<IUserRoleManager, UserRoleManager>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IUserRoleRepository, UserRoleRepository>();
-builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
-
+builder.Services.AddScoped<IRepository<User>, Repository<User>>();
+builder.Services.AddScoped<IRepository<UserRole>, Repository<UserRole>>();
+builder.Services.AddScoped<IRepository<Department>, Repository<Department>>();
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 

@@ -7,23 +7,21 @@ public static class UserRoleMapping
 {
     public static UserRoleView MapToView(UserRole entity)
     {
-        if (entity == null)
-            return null;
-
-        return new UserRoleView
+        return (entity == null) ? null : new UserRoleView
         {
             Id = entity.Id,
             Name = entity.Name,
-            Description = entity.Description
+            Description = entity.Description,
+            CreatedBy = entity.CreatedBy,
+            CreatedOn = entity.CreatedOn,
+            ModifiedBy = entity.ModifiedBy,
+            ModifiedOn = entity.ModifiedOn
         };
     }
 
     public static UserRole MapToEntity(UserRoleModel model)
     {
-        if (model == null)
-            return null;
-
-        return new UserRole
+        return (model == null) ? null : new UserRole
         {
             Name = model.Name,
             Description = model.Description

@@ -1,8 +1,14 @@
-﻿using Business.Views;
+﻿using Business.Models;
+using Business.Views;
+
 namespace Business.Interfaces;
+
 public interface IUserManager
 {
     Task<List<UserView>> GetAllUsers();
-    Task<UserView> GetUserByUserId(int userId);
-    Task<List<UserView>> GetUsersByRoleId(int roleId);
+    Task<UserView> GetUserById(int id);
+    Task<UserView> CreateUser(UserModel model);
+    Task<UserView> UpdateUser(int id, UserModel model);
+    Task<bool> DeleteUser(int id);
+    Task<List<UserView>> GetUsersByRoleId(int id);
 }

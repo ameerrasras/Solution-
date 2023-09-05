@@ -1,4 +1,5 @@
 ﻿namespace Infrastructure.Entities;
+
 public class TrackingData
 {
     public string? CreatedBy { get; set; }

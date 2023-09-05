@@ -1,47 +1,58 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Business.Interfaces;
 using Business.Models;
+
 namespace WebApi.Controllers;
+
 #nullable disable
 [ApiController]
 [Route("[controller]")]
 public class UserRoleController : ControllerBase
 {
-    private readonly IUserRoleManager _userRoleManager;
-    public UserRoleController(IUserRoleManager userRoleManager)
+    private readonly IUserRoleManager _manager;
+
+    public UserRoleController(IUserRoleManager manager)
     {
-        _userRoleManager = userRoleManager;
+        _manager = manager;
     }
+
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        return Ok(await _userRoleManager.GetAllUserRoles());
+        return Ok(await _manager.GetAllUserRoles());
     }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
-        var role = await _userRoleManager.GetUserRoleById(id);
+        var role = await _manager.GetUserRoleById(id);
         return (role == null) ? NotFound() : Ok(role);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] UserRoleModel roleModel)
+    public async Task<IActionResult> Create([FromBody] UserRoleModel model)
     {
-        var newRole = await _userRoleManager.CreateUserRole(roleModel);
-        return (newRole == null) ? BadRequest("Failed to create role") : Ok(roleModel);
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        var newRole = await _manager.CreateUserRole(model);
+        return (newRole == null) ? BadRequest("Failed to create role") : Ok(newRole);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, [FromBody] UserRoleModel roleModel)
+    public async Task<IActionResult> Update(int id, [FromBody] UserRoleModel model)
     {
-        var updatedRole = await _userRoleManager.UpdateUserRole(id, roleModel);
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        var updatedRole = await _manager.UpdateUserRole(id, model);
         return (updatedRole == null) ? NotFound() : Ok(updatedRole);
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var result = await _userRoleManager.DeleteUserRole(id);
-        return(!result) ? NotFound(): NoContent();
+        var result = await _manager.DeleteUserRole(id);
+        return result ? Ok(result) : BadRequest("Failed to delete "); ;
     }
 }
