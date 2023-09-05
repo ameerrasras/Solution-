@@ -52,7 +52,6 @@ public class UserRoleController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var result = await _manager.DeleteUserRole(id);
-        return result ? Ok("Deleted Successfully") : BadRequest("Failed to delete "); ;
+        return await _manager.DeleteUserRole(id) ? Ok("Deleted Successfully") : BadRequest("Failed to delete "); ;
     }
 }
