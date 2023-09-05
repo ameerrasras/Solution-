@@ -53,6 +53,6 @@ public class UserRoleController : ControllerBase
     public async Task<IActionResult> Delete(int id)
     {
         var result = await _manager.DeleteUserRole(id);
-        return result ? Ok(result) : BadRequest("Failed to delete "); ;
+        return result ? Ok("Deleted Successfully") : BadRequest("Failed to delete "); ;
     }
 }

@@ -21,7 +21,7 @@ public class UserController : ControllerBase
         return Ok(await _manager.GetAllUsers());
     }
 
-    [HttpGet("Role/{roleId}")]
+    [HttpGet("Role/{id}")]
     public async Task<IActionResult> GetUsersByRoleId(int id)
     {
         var usersWithRole = await _manager.GetUsersByRoleId(id);
