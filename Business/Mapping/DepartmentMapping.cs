@@ -7,7 +7,7 @@ namespace Business.Mapping;
 #nullable disable
 public static class DepartmentMapping
 {
-    public static DepartmentsView MapToView(Department entity)
+    public static DepartmentsView MapToView(this Department entity)
     {
         return (entity == null) ? null : new DepartmentsView
         {

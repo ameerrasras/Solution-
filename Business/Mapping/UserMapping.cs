@@ -7,7 +7,7 @@ namespace Business.Mapping;
 #nullable disable
 public static class UserMapping 
 {
-    public static UserView MapToView(User entity)
+    public static UserView MapToView(this User entity)
     {
         return (entity == null) ? null : new UserView
         {
@@ -19,10 +19,9 @@ public static class UserMapping
             ModifiedBy = entity.ModifiedBy,
             ModifiedOn = entity.ModifiedOn
         };
-
     }
 
-    public static User MapToEntity(UserModel model)
+    public static User MapToEntity(this UserModel model)
     {
         return (model == null) ? null : new User
         { 

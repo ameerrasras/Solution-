@@ -26,12 +26,12 @@ public class DepartmentManager : IDepartmentManager
     public async Task<DepartmentsView> GetDepartmentById(int id)
     {
         var department = await _repository.GetByIdAsync(id);
-        return (department == null || department.IsDeleted) ? null: DepartmentMapping.MapToView(department);
+        return (department == null || department.IsDeleted) ? null: department.MapToView();
     }
 
     public async Task<DepartmentsView> CreateDepartment(DepartmentModel model)
     {
-        var entity = DepartmentMapping.MapToEntity(model);
+        var entity = model.MapToEntity();
         entity.CreatedBy = "Ameer";
         entity.CreatedOn = DateTime.Now;
         entity.IsDeleted = false;
@@ -39,7 +39,7 @@ public class DepartmentManager : IDepartmentManager
         var department = await _repository.AddAsync(entity);
         entity.Id = department.Id;
 
-        return DepartmentMapping.MapToView(entity);
+        return entity.MapToView();
     }
 
     public async Task<DepartmentsView> UpdateDepartment(int id, DepartmentModel model)
@@ -56,7 +56,7 @@ public class DepartmentManager : IDepartmentManager
 
         await _repository.UpdateAsync(existingDepartment);
 
-        return DepartmentMapping.MapToView(existingDepartment);
+        return existingDepartment.MapToView();
     }
 
     public async Task<bool> DeleteDepartment(int id)

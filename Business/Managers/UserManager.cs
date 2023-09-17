@@ -26,19 +26,19 @@ public class UserManager : IUserManager
     public async Task<UserView> GetUserById(int userId)
     {
         var user = await _repository.GetByIdAsync(userId);
-        return (user == null || user.IsDeleted ) ? null : UserMapping.MapToView(user);
+        return (user == null || user.IsDeleted ) ? null : user.MapToView();
 
     }
 
     public async Task<UserView> CreateUser(UserModel model)
     {
-        var entity = UserMapping.MapToEntity(model);
+        var entity = model.MapToEntity();
         entity.CreatedBy = "Ameer";
         entity.CreatedOn = DateTime.Now;
         entity.IsDeleted = false;
         var createdEntity = await _repository.AddAsync(entity); 
 
-        return UserMapping.MapToView(createdEntity);
+        return createdEntity.MapToView();
     }
 
     public async Task<UserView> UpdateUser(int Id, UserModel model)
@@ -56,7 +56,7 @@ public class UserManager : IUserManager
 
         await _repository.UpdateAsync(existingUser);
 
-        return UserMapping.MapToView(existingUser);
+        return existingUser.MapToView();
     }
 
     public async Task<bool> DeleteUser(int id)

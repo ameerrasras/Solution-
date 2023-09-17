@@ -18,24 +18,56 @@ public class Repository<T> : IRepository<T> where T : class
 
     public async Task<T> GetByIdAsync(int id)
     {
-        return await _dbSet.FindAsync(new object[] { id });
+        try
+        {
+            return await _dbSet.FindAsync(new object[] { id });
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            return default(T); 
+        }
     }
 
     public async Task<IList<T>> GetAllAsync()
     {
-        return await _dbSet.ToListAsync();
+        try
+        {
+            return await _dbSet.ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            return new List<T>(); 
+        }
     }
 
     public async Task<T> AddAsync(T entity)
     {
-        await _dbSet.AddAsync(entity);
-        await _context.SaveChangesAsync();
-        return entity;
+        try
+        {
+            await _dbSet.AddAsync(entity);
+            await _context.SaveChangesAsync();
+            return entity;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            return default(T);
+        }
     }
 
     public async Task UpdateAsync(T entity)
     {
-        _context.Entry(entity).State = EntityState.Modified;
-        await _context.SaveChangesAsync();
+        try
+        {
+            _context.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+        }
     }
+
 }

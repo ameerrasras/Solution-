@@ -11,7 +11,7 @@ namespace Business.Managers;
 public class UserRoleManager : IUserRoleManager
 {
     private readonly IRepository<UserRole> _repository;
-
+    
     public UserRoleManager(IRepository<UserRole> repository)
     {
         _repository = repository;
@@ -26,18 +26,18 @@ public class UserRoleManager : IUserRoleManager
     public async Task<UserRoleView> GetUserRoleById(int id)
     {
         var userRole = await _repository.GetByIdAsync(id);
-        return (userRole == null || userRole.IsDeleted) ? null : UserRoleMapping.MapToView(userRole);
+        return (userRole == null || userRole.IsDeleted) ? null : userRole.MapToView();
     }
 
     public async Task<UserRoleView> CreateUserRole(UserRoleModel model)
     {
-        var entity = UserRoleMapping.MapToEntity(model);
+        var entity = model.MapToEntity();
         entity.CreatedBy = "Ameer";
         entity.CreatedOn = DateTime.Now;
         entity.IsDeleted = false;
 
         var createdEntity = await _repository.AddAsync(entity);
-        return UserRoleMapping.MapToView(createdEntity);
+        return createdEntity.MapToView();
     }
 
     public async Task<UserRoleView> UpdateUserRole(int id, UserRoleModel model)
@@ -54,7 +54,7 @@ public class UserRoleManager : IUserRoleManager
 
         await _repository.UpdateAsync(existingUserRole);
 
-        return UserRoleMapping.MapToView(existingUserRole);
+        return existingUserRole.MapToView();
     }
 
     public async Task<bool> DeleteUserRole(int id)

@@ -27,10 +27,13 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddScoped<IDepartmentManager, DepartmentManager>();
 builder.Services.AddScoped<IUserManager, UserManager>();
 builder.Services.AddScoped<IUserRoleManager, UserRoleManager>();
-
+builder.Services.AddScoped<IEmployeeDetailsManager , EmployeeDetailsManager>();
+builder.Services.AddScoped<IUserDetailsManager, UserDetailsManager>();
 builder.Services.AddScoped<IRepository<User>, Repository<User>>();
 builder.Services.AddScoped<IRepository<UserRole>, Repository<UserRole>>();
 builder.Services.AddScoped<IRepository<Department>, Repository<Department>>();
+builder.Services.AddScoped<IRepository<EmployeeDetails>, Repository<EmployeeDetails>>();
+builder.Services.AddScoped<IRepository<UserDetails>, Repository<UserDetails>>();
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 
