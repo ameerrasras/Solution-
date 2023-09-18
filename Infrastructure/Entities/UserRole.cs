@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+#nullable disable
 
 namespace Infrastructure.Entities;
 
-#nullable disable
 public class UserRole : TrackingData
 {
     [Key]

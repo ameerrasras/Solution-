@@ -13,6 +13,9 @@ public class UserDetailsModel
     [Url(ErrorMessage = "Invalid URL format.")]
     public string ProfilePictureUrl { get; set; }
 
+    [Required(ErrorMessage = "UserId is required.")]
+    public int UserId { get; set; }
+
     [Required(ErrorMessage = "Last name is required.")]
     [StringLength(50, ErrorMessage = "Last name cannot be longer than 50 characters.")]
     public string LastName { get; set; }

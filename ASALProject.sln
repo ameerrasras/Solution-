@@ -15,6 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{51CA5C
 		images\female.png = images\female.png
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3F4B68F9-6E15-4D25-B559-202637BF9BD4}"
+	ProjectSection(SolutionItems) = preProject
+		FileTemplate.xft.xml = FileTemplate.xft.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

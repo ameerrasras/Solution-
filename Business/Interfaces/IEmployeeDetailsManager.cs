@@ -10,6 +10,5 @@ namespace Business.Interfaces
         Task<EmployeeDetailsView> AddEmployeeDetails(EmployeeDetailsModel model);
         Task<EmployeeDetailsView> UpdateEmployeeDetails(int Id, EmployeeDetailsModel model);
         Task<bool> DeleteEmployeeDetails(int id);
-        //Task<List<EmployeeDetailsView>> GetEmployeesByDepartmentId(int id);
     }
 }

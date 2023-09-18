@@ -17,5 +17,5 @@ public class Department : TrackingData
     [MaxLength(300)]
     public string Description { get; set; }
 
-    public virtual ICollection<EmployeeDetails> EmployeeDetails { get; set; }
+    public ICollection<EmployeeDetails> EmployeesDetails { get; set; }
 }

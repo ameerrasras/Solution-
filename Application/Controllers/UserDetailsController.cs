@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Business.Interfaces;
 using Infrastructure.Entities;
-using Microsoft.IdentityModel.Tokens;
 
 namespace WebApi.Controllers;
 

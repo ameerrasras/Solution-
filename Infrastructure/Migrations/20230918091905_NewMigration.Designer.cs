@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(MSDBcontext))]
-    [Migration("20230915163846_newMig")]
-    partial class newMig
+    [Migration("20230918091905_NewMigration")]
+    partial class NewMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -97,9 +97,15 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("EmployeeDetails");
                 });
@@ -189,7 +195,13 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("UserDetails");
                 });
@@ -233,12 +245,20 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Infrastructure.Entities.EmployeeDetails", b =>
                 {
                     b.HasOne("Infrastructure.Entities.Department", "Department")
-                        .WithMany("EmployeeDetails")
+                        .WithMany("EmployeesDetails")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Infrastructure.Entities.User", "User")
+                        .WithOne("EmployeeDetails")
+                        .HasForeignKey("Infrastructure.Entities.EmployeeDetails", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Department");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Infrastructure.Entities.User", b =>
@@ -252,9 +272,27 @@ namespace Infrastructure.Migrations
                     b.Navigation("UserRole");
                 });
 
+            modelBuilder.Entity("Infrastructure.Entities.UserDetails", b =>
+                {
+                    b.HasOne("Infrastructure.Entities.User", "User")
+                        .WithOne("UserDetails")
+                        .HasForeignKey("Infrastructure.Entities.UserDetails", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Infrastructure.Entities.Department", b =>
                 {
+                    b.Navigation("EmployeesDetails");
+                });
+
+            modelBuilder.Entity("Infrastructure.Entities.User", b =>
+                {
                     b.Navigation("EmployeeDetails");
+
+                    b.Navigation("UserDetails");
                 });
 
             modelBuilder.Entity("Infrastructure.Entities.UserRole", b =>

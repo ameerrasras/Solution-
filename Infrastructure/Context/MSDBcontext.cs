@@ -9,13 +9,13 @@ public class MSDBcontext : DbContext
     public MSDBcontext() : base() { }
 
     public MSDBcontext(DbContextOptions<MSDBcontext> options)
-        : base(options) {}
+        : base(options) { }
 
     public DbSet<Department> Departments { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<UserRole> UserRoles { get; set; }
-    public DbSet<UserDetails> UserDetails { get; set; }  
-    public DbSet<EmployeeDetails> EmployeeDetails { get; set; } 
+    public DbSet<UserDetails> UserDetails { get; set; }
+    public DbSet<EmployeeDetails> EmployeeDetails { get; set; }
 
     public object T { get; internal set; }
 
@@ -34,8 +34,18 @@ public class MSDBcontext : DbContext
             .HasForeignKey(u => u.RoleId);
 
         modelBuilder.Entity<EmployeeDetails>()
-            .HasOne(ed => ed.Department)
-            .WithMany(d => d.EmployeeDetails) 
-            .HasForeignKey(ed => ed.DepartmentId);
+            .HasOne(e => e.Department)
+            .WithMany(d => d.EmployeesDetails)
+            .HasForeignKey(e => e.DepartmentId);
+
+        modelBuilder.Entity<EmployeeDetails>()
+            .HasOne(e => e.User)
+            .WithOne(u => u.EmployeeDetails) 
+            .HasForeignKey<EmployeeDetails>(e => e.UserId);
+
+        modelBuilder.Entity<UserDetails>()
+            .HasOne(ud => ud.User)
+            .WithOne(u => u.UserDetails)
+            .HasForeignKey<UserDetails>(ud => ud.UserId);
     }
 }

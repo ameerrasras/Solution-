@@ -11,6 +11,7 @@ public static class UserDetailsMapping
         return (entity == null) ? null : new UserDetailsView
         {
             Id = entity.Id,
+            UserId = entity.UserId,
             ProfilePictureUrl = entity.ProfilePictureUrl,
             FirstName = entity.FirstName,
             LastName = entity.LastName,
@@ -32,7 +33,8 @@ public static class UserDetailsMapping
             ProfilePictureUrl = model.ProfilePictureUrl,
             LastName = model.LastName,
             Address = model.Address,
-            Tel = model.Tel
+            Tel = model.Tel,
+            UserId = model.UserId
         };
     }
 }

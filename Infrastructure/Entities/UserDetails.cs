@@ -25,4 +25,7 @@ public class UserDetails : TrackingData
     [Required]
     [MaxLength(15)]
     public string Tel { get; set; }
+
+    public int UserId { get; set; }
+    public User User { get; set; }
 }

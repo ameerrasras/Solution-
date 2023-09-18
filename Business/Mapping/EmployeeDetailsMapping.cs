@@ -14,6 +14,7 @@ public static class EmployeeDetailsMapping
             Salary = entity.Salary,
             StartDate = entity.StartDate,
             EndDate = entity.EndDate,
+            UserId = entity.UserId,
             CreatedBy = entity.CreatedBy,
             CreatedOn = entity.CreatedOn,
             ModifiedBy = entity.ModifiedBy,
@@ -28,7 +29,8 @@ public static class EmployeeDetailsMapping
             DepartmentId = model.DepartmentId,
             Salary = model.Salary,
             StartDate = model.StartDate,
-            EndDate = model.EndDate
+            EndDate = model.EndDate,
+            UserId = model.UserId
         };
     }
 }

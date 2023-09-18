@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+#nullable disable
 
 namespace Business.Models;
-#nullable disable
+
 public class DepartmentModel
 {
     [Required]

@@ -1,6 +1,8 @@
 ﻿using Infrastructure.Entities;
-namespace Business.Views;
 #nullable disable
+
+namespace Business.Views;
+
 public class UserView : TrackingData
 {
     public int Id { get; set; }
