@@ -1,26 +1,47 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Department Data</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Department List</h1>
-    <table id="departmentTable" border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Created By</th>
-                <th>Created On</th>
-                <th>Modified By</th>
-                <th>Modified On</th>
-                <th>Is Deleted</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <header>
+        <h1>Department List</h1>
+        <button id="getAllDepartmentsButton">Get All Departments</button>
+        <button id="getDepartmentByIdButton">Get Department by ID</button>
+        <input type="text" id="departmentIdInput" placeholder="Enter ID">
+        <button id="createDepartmentButton">Create Department</button>
+        <input type="text" id="newDepartmentName" placeholder="Name">
+        <input type="text" id="newDepartmentDescription" placeholder="Description">
+        <button id="updateDepartmentButton"> Update Department </button>
+        <input type="text" id="departmentIdInput2" placeholder="Enter ID">
+
+
+    </header>
+
+    <main>
+        <table id="departmentTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Created By</th>
+                    <th>Created On</th>
+                    <th>Modified By</th>
+                    <th>Modified On</th>
+                    <th>Notes</th>
+                    <th>Delete</th>
+
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>

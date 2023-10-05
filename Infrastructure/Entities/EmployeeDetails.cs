@@ -27,6 +27,4 @@ public class EmployeeDetails : TrackingData
     [Required]
     [ForeignKey("User")]
     public int UserId { get; set; }
-
-
 }

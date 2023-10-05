@@ -19,9 +19,12 @@ public class DepartmentManager : IDepartmentManager
 
     public async Task<List<DepartmentsView>> GetAllDepartments()
     {
-            var departments = await _repository.GetAllAsync();
-            return departments.Select(DepartmentMapping.MapToView).ToList();
+        return (await _repository.GetAllAsync())
+            .Where(department => !department.IsDeleted)
+            .Select(DepartmentMapping.MapToView)
+            .ToList();
     }
+
 
     public async Task<DepartmentsView> GetDepartmentById(int id)
     {

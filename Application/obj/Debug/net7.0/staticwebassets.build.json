@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "D71evuhKcjpn3q/i19ejOocsAvXdi1ZH6T36buJv6Ds=",
+  "Hash": "GRufd03UOjHaLGj1xpmofpv0QiSWqr56XV3J8AYnG5U=",
   "Source": "Application",
   "BasePath": "_content/Application",
   "Mode": "Default",
@@ -2106,6 +2106,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Identity": "/Users/ameerrasras/Projects/Application/Application/wwwroot/styles.css",
+      "SourceId": "Application",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/ameerrasras/Projects/Application/Application/wwwroot/",
+      "BasePath": "_content/Application",
+      "RelativePath": "styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/styles.css"
     }
   ]
 }

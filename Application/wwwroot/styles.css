@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html >
+<html lang="en" >
+<head >
+<meta charset="UTF-8" >
+<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+<title > Department Data</title >
+<style >
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+    .btn:hover {
+        background-color: #45a049;
+    }
+
+.input-field {
+    margin: 5px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.table-container {
+    background-color: #fff;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.success-message {
+    color: #4CAF50;
+}
+
+.error-message {
+    color: #f44336;
+}
+
+</style >
+</head >
+<body >
+<header >
+<h1 > Department List</h1 >
+<button class="btn" id="getAllDepartmentsButton" > Get All Departments</button >
+<button class="btn" id="getDepartmentByIdButton" > Get Department by ID</button >
+<input class="input-field" type="text" id="departmentIdInput" placeholder="Enter ID" >
+</header >
+
+<main >
+<div class="table-container" >
+<table id="departmentTable" >
+<thead >
+<tr >
+<th > ID</th >
+<th > Name</th >
+<th > Description</th >
+<th > Created By</th >
+<th > Created On</th >
+<th > Modified By</th >
+<th > Modified On</th >
+<th > Is Deleted</th >
+</tr >
+</thead >
+<tbody >
+</tbody >
+</table >
+</div >
+<div class="success-message" id="successMessage" > </div >
+<div class="error-message" id="errorMessage" > </div >
+</main >
+
+<script src="script.js" > </script >
+</body >
+</html >

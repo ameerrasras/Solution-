@@ -249,6 +249,10 @@
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
     },
     {
+      "Id": "/Users/ameerrasras/Projects/Application/Application/wwwroot/styles.css",
+      "PackagePath": "staticwebassets/styles.css"
+    },
+    {
       "Id": "obj/Debug/net7.0/staticwebassets/msbuild.Application.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

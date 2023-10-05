@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Business.Interfaces;
 using Infrastructure.Entities;
-
+  
 namespace WebApi.Controllers;
 
 [ApiController]
