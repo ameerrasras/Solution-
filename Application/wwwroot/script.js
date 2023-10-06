@@ -1,12 +1,12 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     const getAllDepartmentsButton = document.getElementById("getAllDepartmentsButton");
     const getDepartmentByIdButton = document.getElementById("getDepartmentByIdButton");
-    const departmentIdInput = document.getElementById("departmentIdInput"); // Corrected ID
+    const departmentIdInput = document.getElementById("departmentIdInput"); 
     const tableBody = document.querySelector("#departmentTable tbody");
     const createDepartmentButton = document.getElementById("createDepartmentButton");
     const newDepartmentNameInput = document.getElementById("newDepartmentName");
     const newDepartmentDescriptionInput = document.getElementById("newDepartmentDescription");
-    const updateDepartmentButton = document.getElementById("updateDepartmentButton"); // Added
+    const updateDepartmentButton = document.getElementById("updateDepartmentButton"); 
 
     function populateTable(departments) {
         tableBody.innerHTML = '';
@@ -32,7 +32,6 @@
                 cell6.textContent = department.modifiedBy || "N/A";
                 cell7.textContent = department.modifiedOn || "N/A";
 
-                // Create and add a "Delete" button with a data-attribute for department ID
                 const deleteButton = document.createElement("button");
                 deleteButton.textContent = "Delete";
                 deleteButton.classList.add("delete-button");
@@ -59,12 +58,10 @@
         }
     }
 
-    // Event listener for "Delete Department" buttons
     tableBody.addEventListener("click", function (event) {
         if (event.target.classList.contains("delete-button")) {
             const departmentIdToDelete = event.target.getAttribute("data-department-id");
 
-            // Send a DELETE request to delete the department
             fetch(`http://localhost:5108/api/Departments/${departmentIdToDelete}`, {
                 method: 'DELETE'
             })
@@ -75,15 +72,12 @@
                     return response.json();
                 })
                 .then(data => {
-                    // Assuming the API returns a success message
                     alert(data.message);
-                    // You can optionally update the table or refresh data
                 })
                 .catch(error => console.error('Error deleting department:', error));
         }
     });
 
-    // Event listener for "Get All Departments" button
     getAllDepartmentsButton.addEventListener("click", function () {
         fetch('http://localhost:5108/api/Departments')
             .then(response => {
@@ -99,8 +93,7 @@
     });
 
     getDepartmentByIdButton.addEventListener("click", function () {
-        const departmentId = departmentIdInput.value; // Corrected variable name
-
+        const departmentId = departmentIdInput.value; 
         if (!departmentId) {
             alert("Please enter a department ID.");
             return;
@@ -130,13 +123,11 @@
             description: newDepartmentDescriptionInput.value,
         };
 
-        // Validate required fields (e.g., name)
         if (!newDepartment.name) {
             alert("Please enter a department name.");
             return;
         }
 
-        // Send a POST request to create a new department
         fetch('http://localhost:5108/api/Departments', {
             method: 'POST',
             headers: {
@@ -151,16 +142,13 @@
                 return response.json();
             })
             .then(data => {
-                // Assuming the API returns the newly created department object
                 alert(`New department created with ID: ${data.id}`);
-                // You can optionally clear the input fields or update the table
             })
             .catch(error => console.error('Error creating department:', error));
     });
-    // Assuming you have a "Delete" button with the id "deleteDepartmentButton"
 
     updateDepartmentButton.addEventListener("click", function () {
-        const departmentIdToUpdate = departmentIdInput2.value; // Corrected variable name
+        const departmentIdToUpdate = departmentIdInput2.value; 
 
         if (!departmentIdToUpdate) {
             alert("Please enter a department ID.");
@@ -168,12 +156,11 @@
         }
 
         const updatedDepartment = {
-            id: departmentIdToUpdate, // Include the department ID in the request body
+            id: departmentIdToUpdate,
             name: newDepartmentNameInput.value,
             description: newDepartmentDescriptionInput.value,
         };
 
-        // Send a PUT request to update the department
         fetch(`http://localhost:5108/api/Departments/${departmentIdToUpdate}`, {
             method: 'PUT',
             headers: {
@@ -188,9 +175,7 @@
                 return response.json();
             })
             .then(data => {
-                // Assuming the API returns the updated department object
                 alert(`Department updated with ID: ${data.id}, Name: ${data.name}, Description: ${data.description}`);
-                // You can optionally clear the input fields or update the table
             })
             .catch(error => console.error('Error updating department:', error));
     });
@@ -206,7 +191,6 @@
             return;
         }
 
-        // Send a DELETE request to delete the department
         fetch(`http://localhost:5108/api/Departments/${departmentIdToUpdate}`, {
             method: 'DELETE',
             headers: {
@@ -220,9 +204,7 @@
                 return response.json();
             })
             .then(data => {
-                // Assuming the API returns a success message
                 alert(data.message);
-                // You can optionally update the table or refresh data
             })
             .catch(error => console.error('Error deleting department:', error));
     });
