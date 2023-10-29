@@ -4,6 +4,13 @@ using Business.Mapping;
 using Business.Models;
 using Business.Views;
 using Infrastructure.Entities;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.Extensions.Configuration;
+using System.Data;
+
 #nullable disable
 
 namespace Business.Managers;
@@ -11,10 +18,14 @@ namespace Business.Managers;
 public class UserManager : IUserManager
 {
     private readonly IRepository<User> _repository;
+    private readonly IUserRoleManager _roleManager;
+    private readonly IConfiguration _configuration;
 
-    public UserManager(IRepository<User> repository)
+    public UserManager(IRepository<User> repository, IConfiguration configuration, IUserRoleManager roleManager) 
     {
         _repository = repository;
+        _roleManager = roleManager;
+        _configuration = configuration;
     }
 
     public async Task<List<UserView>> GetAllUsers()
@@ -32,6 +43,8 @@ public class UserManager : IUserManager
 
     public async Task<UserView> CreateUser(UserModel model)
     {
+
+        model.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
         var entity = model.MapToEntity();
         entity.CreatedBy = "Ameer";
         entity.CreatedOn = DateTime.Now;
@@ -83,4 +96,44 @@ public class UserManager : IUserManager
         var filteredUsers = users.Where(u => u.RoleId == id).ToList();
         return filteredUsers.Select(UserMapping.MapToView).ToList();
     }
+
+
+
+    public string GenerateJwtToken(string email, string role)
+    {
+        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+     _configuration.GetSection("Authentication:Schemes:Bearer:SigningKeys:0:Value").Value!));
+
+        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+
+        var claims = new[]
+        {
+            new Claim(ClaimTypes.Role, role),
+        };
+
+        var token = new JwtSecurityToken(
+            claims: claims,
+            expires: DateTime.Now.AddDays(999),
+        signingCredentials: credentials
+        );
+
+        var tokenHandler = new JwtSecurityTokenHandler();
+
+        return tokenHandler.WriteToken(token);
+    }
+
+
+    public async Task<string> GetRoleNameAsync(int roleId)
+    {
+        var role = await _roleManager.GetUserRoleById(roleId);
+
+        if (role != null)
+            return role.Name;
+        else
+            throw new Exception("Role not found");
+    }
+
 }
+
+

@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Business.Interfaces;
 using Business.Models;
+using Microsoft.AspNetCore.Authorization;
+#nullable disable
 
 namespace WebApi.Controllers;
-
 [ApiController]
 [Route("[controller]")]
+
 public class UserController : ControllerBase
 {
     private readonly IUserManager _manager;
@@ -16,6 +18,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> GetAll()
     {
         return Ok(await _manager.GetAllUsers());
@@ -47,6 +50,29 @@ public class UserController : ControllerBase
 
         var newUser = await _manager.CreateUser(model);
         return newUser == null ? BadRequest("Failed to create role") : Ok(newUser);
+
+    }
+
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(int id , string password)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        var user = await _manager.GetUserById(id);
+        
+        if (user == null)
+            return BadRequest("No User Found.");
+
+        if(!BCrypt.Net.BCrypt.Verify(password ,user.Password))
+            return BadRequest("Wrong Password.");
+
+        string roleName = await _manager.GetRoleNameAsync(user.RoleId);
+
+        string token = _manager.GenerateJwtToken(user.Email, roleName);
+        return Ok(token);
+
     }
 
     [HttpPut("{id}")]
@@ -62,6 +88,8 @@ public class UserController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        return ( await _manager.DeleteUser(id) ) ? Ok("Deleted Successfully") : BadRequest("Failed to delete");
+        return (await _manager.DeleteUser(id)) ? Ok("Deleted Successfully") : BadRequest("Failed to delete");
     }
+
 }
+ 

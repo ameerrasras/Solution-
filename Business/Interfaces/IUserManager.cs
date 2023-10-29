@@ -11,4 +11,7 @@ public interface IUserManager
     Task<UserView> UpdateUser(int id, UserModel model);
     Task<bool> DeleteUser(int id);
     Task<List<UserView>> GetUsersByRoleId(int id);
+    string GenerateJwtToken(string email, string role);
+    Task<string> GetRoleNameAsync(int roleId);
+
 }

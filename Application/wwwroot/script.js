@@ -1,13 +1,21 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     const getAllDepartmentsButton = document.getElementById("getAllDepartmentsButton");
     const getDepartmentByIdButton = document.getElementById("getDepartmentByIdButton");
-    const departmentIdInput = document.getElementById("departmentIdInput"); 
+    const departmentIdInput = document.getElementById("departmentIdInput");
     const tableBody = document.querySelector("#departmentTable tbody");
     const createDepartmentButton = document.getElementById("createDepartmentButton");
     const newDepartmentNameInput = document.getElementById("newDepartmentName");
     const newDepartmentDescriptionInput = document.getElementById("newDepartmentDescription");
-    const updateDepartmentButton = document.getElementById("updateDepartmentButton"); 
+    const updateDepartmentButton = document.getElementById("updateDepartmentButton");
 
+
+    document.getElementById('updateDepartmentButton').addEventListener('click', function () {
+        document.getElementById('update-popup-container').style.display = 'block';
+    });
+
+    document.getElementById('close-update-popup').addEventListener('click', function () {
+        document.getElementById('update-popup-container').style.display = 'none';
+    });
     function populateTable(departments) {
         tableBody.innerHTML = '';
 
@@ -31,6 +39,11 @@
                 cell5.textContent = department.createdOn || "N/A";
                 cell6.textContent = department.modifiedBy || "N/A";
                 cell7.textContent = department.modifiedOn || "N/A";
+
+                const updateButton = document.createElement("button");
+                updateButton.textContent = "Update";
+                updateButton.classList.add("update-button");
+                cell8.appendChild(updateButton);
 
                 const deleteButton = document.createElement("button");
                 deleteButton.textContent = "Delete";
@@ -116,7 +129,6 @@
             .catch(error => console.error('Error fetching data:', error));
     });
 
-
     createDepartmentButton.addEventListener("click", function () {
         const newDepartment = {
             name: newDepartmentNameInput.value,
@@ -179,7 +191,6 @@
             })
             .catch(error => console.error('Error updating department:', error));
     });
-
 
     const deleteDepartmentButton = document.getElementById("deleteDepartmentButton");
 

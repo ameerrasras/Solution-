@@ -17,8 +17,6 @@
         <input type="text" id="newDepartmentDescription" placeholder="Description">
         <button id="updateDepartmentButton"> Update Department </button>
         <input type="text" id="departmentIdInput2" placeholder="Enter ID">
-
-
     </header>
 
     <main>
@@ -32,15 +30,25 @@
                     <th>Created On</th>
                     <th>Modified By</th>
                     <th>Modified On</th>
-                    <th>Notes</th>
+                    <th>Upadte</th>
                     <th>Delete</th>
-
                 </tr>
             </thead>
             <tbody>
             </tbody>
         </table>
     </main>
+
+    <!-- Update Department Popup (HTML only) -->
+    <div id="update-popup-container" class="popup">
+        <div class="popup-content">
+            <span class="close" id="close-update-popup">&times;</span>
+            <h2>Update Department</h2>
+            <input type="text" id="update-department-name" placeholder="New Name">
+            <input type="text" id="update-department-description" placeholder="New Description">
+            <!-- A button to perform the update operation can be added here -->
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

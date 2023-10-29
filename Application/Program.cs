@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Infrastructure.Repository;
 using Infrastructure.Entities;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString =
@@ -36,6 +37,8 @@ builder.Services.AddScoped<IRepository<EmployeeDetails>, Repository<EmployeeDeta
 builder.Services.AddScoped<IRepository<UserDetails>, Repository<UserDetails>>();
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
+builder.Services.AddAuthentication().AddJwtBearer();
+builder.Services.AddAuthorization ();
 
 var app = builder.Build();
 

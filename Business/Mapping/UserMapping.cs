@@ -13,6 +13,7 @@ public static class UserMapping
         {
             Id = entity.Id,
             Email = entity.Email,
+            Password=entity.Password,
             RoleId = entity.RoleId,
             CreatedBy = entity.CreatedBy,
             CreatedOn = entity.CreatedOn,

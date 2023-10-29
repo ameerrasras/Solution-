@@ -15,5 +15,4 @@ public class User : TrackingData
     public int RoleId { get; set; }
     public UserDetails UserDetails { get; set; }
     public EmployeeDetails EmployeeDetails { get; set; }
-
 }

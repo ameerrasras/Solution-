@@ -1,4 +1,5 @@
 /Users/ameerrasras/Projects/Application/Infrastructure/bin/Debug/net7.0/Infrastructure.deps.json
+/Users/ameerrasras/Projects/Application/Infrastructure/bin/Debug/net7.0/Infrastructure.runtimeconfig.json
 /Users/ameerrasras/Projects/Application/Infrastructure/bin/Debug/net7.0/Infrastructure.dll
 /Users/ameerrasras/Projects/Application/Infrastructure/bin/Debug/net7.0/Infrastructure.pdb
 /Users/ameerrasras/Projects/Application/Infrastructure/obj/Debug/net7.0/Infrastructure.csproj.AssemblyReference.cache
@@ -9,6 +10,5 @@
 /Users/ameerrasras/Projects/Application/Infrastructure/obj/Debug/net7.0/Infrastructure.dll
 /Users/ameerrasras/Projects/Application/Infrastructure/obj/Debug/net7.0/refint/Infrastructure.dll
 /Users/ameerrasras/Projects/Application/Infrastructure/obj/Debug/net7.0/Infrastructure.pdb
-/Users/ameerrasras/Projects/Application/Infrastructure/obj/Debug/net7.0/ref/Infrastructure.dll
-/Users/ameerrasras/Projects/Application/Infrastructure/bin/Debug/net7.0/Infrastructure.runtimeconfig.json
 /Users/ameerrasras/Projects/Application/Infrastructure/obj/Debug/net7.0/Infrastructure.genruntimeconfig.cache
+/Users/ameerrasras/Projects/Application/Infrastructure/obj/Debug/net7.0/ref/Infrastructure.dll

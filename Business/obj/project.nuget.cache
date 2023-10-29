@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "6kYtwaIghMZmriyGumJ/iD77sxfA4UfHUc/5VLVmOW0CGAqG1vYQHaFmNdoVO05eu+p1UeD5i9adlYyy/Km/5A==",
+  "dgSpecHash": "q9Z3gXHY40xlswyS2O1XGSyQTT6NpgtneodOv3MReoMmEpObpaHAK9wUctB5G11II85gjAoj32nvrgkHGN+SMg==",
   "success": true,
   "projectFilePath": "/Users/ameerrasras/Projects/Application/Business/Business.csproj",
   "expectedPackageFiles": [
     "/Users/ameerrasras/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
     "/Users/ameerrasras/.nuget/packages/azure.identity/1.6.0/azure.identity.1.6.0.nupkg.sha512",
+    "/Users/ameerrasras/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/ameerrasras/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "/Users/ameerrasras/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
     "/Users/ameerrasras/.nuget/packages/microsoft.data.sqlclient/5.0.2/microsoft.data.sqlclient.5.0.2.nupkg.sha512",

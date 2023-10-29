@@ -37,6 +37,7 @@ public class DepartmentsController : ControllerBase
         return Ok(departmentView);
     }
 
+
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateDepartment(int id, [FromBody] DepartmentModel model)
     {
